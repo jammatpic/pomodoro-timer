@@ -79,50 +79,52 @@ function timer() {
 	}
 }
 
-$(".break-change").on("click", function() {
-	if (clockActive != true && sessionDone == true) { // if clock is not active, reset all timers with new info
-		changeLength("#break-length", $(this).text());
-		$("#time").text($("#break-length").text() + ":00");
-		clearInterval(countSecs);
-		sessionDone = true;
-		pauseTime = -1;
-		clockActive = false;
-		document.getElementById("btn-start").setAttribute("class", "btn btn-normal");
-		$("#btn-start").text("Start");
-		$("#debug").text(pauseTime);
-	} else {
-		changeLength("#break-length", $(this).text()); // if clock is active, set the next timer
-	}
-});
+$(document).ready(function() {
+    $(".break-change").on("click", function() {
+        if (clockActive != true && sessionDone == true) { // if clock is not active, reset all timers with new info
+            changeLength("#break-length", $(this).text());
+            $("#time").text($("#break-length").text() + ":00");
+            clearInterval(countSecs);
+            sessionDone = true;
+            pauseTime = -1;
+            clockActive = false;
+            document.getElementById("btn-start").setAttribute("class", "btn btn-normal");
+            $("#btn-start").text("Start");
+            $("#debug").text(pauseTime);
+        } else {
+            changeLength("#break-length", $(this).text()); // if clock is active, set the next timer
+        }
+    });
 
-$(".session-change").on("click", function() {
-	if (clockActive != true && sessionDone == false) { 
-		changeLength("#session-length", $(this).text());
-		$("#time").text($("#session-length").text() + ":00");
-		clearInterval(countSecs);
-		sessionDone = false;
-		pauseTime = -1;
-		clockActive = false;
-		document.getElementById("btn-start").setAttribute("class", "btn btn-normal");
-		$("#btn-start").text("Start");
-		$("#debug").text(pauseTime);
-	} else {
-		changeLength("#session-length", $(this).text()); 
-	}
-});
+    $(".session-change").on("click", function() {
+        if (clockActive != true && sessionDone == false) { 
+            changeLength("#session-length", $(this).text());
+            $("#time").text($("#session-length").text() + ":00");
+            clearInterval(countSecs);
+            sessionDone = false;
+            pauseTime = -1;
+            clockActive = false;
+            document.getElementById("btn-start").setAttribute("class", "btn btn-normal");
+            $("#btn-start").text("Start");
+            $("#debug").text(pauseTime);
+        } else {
+            changeLength("#session-length", $(this).text()); 
+        }
+    });
 
-$("#btn-start").on("click", function() {
-	timer();
-});
+    $("#btn-start").on("click", function() {
+        timer();
+    });
 
-$("#btn-reset").on("click", function() {
-	$("#time").text($("#session-length").text() + ":00");
-	$("#status").text("Session");
-	clearInterval(countSecs);
-	sessionDone = false;
-	pauseTime = -1;
-	clockActive = false;
-	document.getElementById("btn-start").setAttribute("class", "btn btn-normal");
-	$("#btn-start").text("Start");
-	$("#debug").text(pauseTime);
+    $("#btn-reset").on("click", function() {
+        $("#time").text($("#session-length").text() + ":00");
+        $("#status").text("Session");
+        clearInterval(countSecs);
+        sessionDone = false;
+        pauseTime = -1;
+        clockActive = false;
+        document.getElementById("btn-start").setAttribute("class", "btn btn-normal");
+        $("#btn-start").text("Start");
+        $("#debug").text(pauseTime);
+    });
 });
