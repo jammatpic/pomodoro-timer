@@ -70,7 +70,7 @@ function timerStart(timerLength, timerType) {
 				timerStart($("#session-length").text(), "session");
 			}
 		}
-	}, 1);
+	}, 1000);
 }
 
 // initialises timer once button is pressed
